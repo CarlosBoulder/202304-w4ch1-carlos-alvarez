@@ -1,20 +1,57 @@
 import Gentleman from "../Gentleman/Gentleman";
+import Info from "../Info/Info";
+import { gentlemenStructure } from "../types";
 
 const App = (): JSX.Element => {
+  const gentlemen: gentlemenStructure[] = [
+    {
+      id: 1,
+      name: "Bertin Osborne",
+      status: "Alive",
+      profession: "Youtuber",
+      twitter: "@osbourne",
+      picture: "bertin.jpg",
+      alternativeText: "Osbourne pointing at you",
+      selected: true,
+    },
+    {
+      id: 2,
+      name: "The Farytale",
+      status: "RIP",
+      profession: "Influencer",
+      twitter: "pending",
+      picture: "fary.jpg",
+      alternativeText: "The Fary pointing at you",
+      selected: false,
+    },
+    {
+      id: 3,
+      name: "Julius Churchs",
+      status: "Alive",
+      profession: "Java developer",
+      twitter: "@julius_churchs",
+      picture: "julio.jpg",
+      alternativeText: "Churchs pointing at you",
+      selected: true,
+    },
+  ];
+
   return (
     <div className="container">
       <header className="main-header">
         <h1 className="main-title">Señores que te apuntan con el dedo</h1>
       </header>
       <section className="controls">
-        <p className="info">0 señores que te apuntan con el dedo marcados</p>
+        <Info />
         <button type="button" className="button button--select">
           Marcar todos
         </button>
       </section>
       <main className="main">
         <ul className="gentlemen">
-          <Gentleman />
+          {gentlemen.map((gentleman) => (
+            <Gentleman {...gentleman} key={gentleman.id} />
+          ))}
         </ul>
       </main>
     </div>
